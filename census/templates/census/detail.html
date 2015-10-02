@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+{% load census_extras %}
+
+<h1>{{ census_view.api_description }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+{% if censuspoints|in_current_view:census_view.id %}
+    <ul>
+        {% for censuspoint in censuspoints|in_current_view:census_view.id %}
+            <li>{{ censuspoint.census_info }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+
+
+{#<form action="{% url 'census:vote' question.id %}" method="post">#}
+{#    {% csrf_token %}#}
+{#    {% for choice in apisetting.choice_set.all %}#}
+{#        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}"/>#}
+{#        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br/>#}
+{#    {% endfor %}#}
+{#    <input type="submit" value="Vote"/>#}
+{#</form>#}
+</body>
+</html>
