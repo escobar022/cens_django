@@ -27,12 +27,14 @@ class Command(BaseCommand):
 
             data_received_keys = data_received[0]
 
-            census_entry = {}
+            census_entry = dict()
 
             for each_value in data_received[1:]:
+                # census_entry = {key: value for (key, value) in each_value}
                 for i in range(len(data_received_keys)):
                     census_entry[data_received_keys[i]] = each_value[i]
                 entry = CensusInfo(census_info=census_entry, api_view_id=call.id)
+                # print(census_entry)
                 entry.save()
 
             call.api_used = 'true'

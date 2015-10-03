@@ -11,7 +11,7 @@ class HousingVariableInline(admin.TabularInline):
 class APISettingAdmin(admin.ModelAdmin):
     list_display = ('api_description',)
     inlines = [HousingVariableInline]
-    exclude = ('api_used',)
+    # exclude = ('api_used',)
 
 
 admin.site.register(APISetting, APISettingAdmin)

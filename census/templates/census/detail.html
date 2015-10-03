@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+    {% load census_extras %}
+
 </head>
 <body>
 
-{% load census_extras %}
 
 <h1>{{ census_view.api_description }}</h1>
 
@@ -15,7 +16,10 @@
 {% if censuspoints|in_current_view:census_view.id %}
     <ul>
         {% for censuspoint in censuspoints|in_current_view:census_view.id %}
-            <li>{{ censuspoint.census_info }}</li>
+
+            <li>{{ censuspoint }}</li>
+
+
         {% endfor %}
     </ul>
 {% else %}
