@@ -53,4 +53,10 @@ a.csview_link:focus, a.csview_link:hover {
 
 #census_view tbody {
     text-align: center;
+    list-style: none;
+}
+
+table.dataTable.display tbody td > ul {
+    text-align: left;
+    list-style: none;
 }
