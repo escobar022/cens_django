@@ -15,4 +15,4 @@ class APISettingAdmin(admin.ModelAdmin):
 
 
 admin.site.register(APISetting, APISettingAdmin)
-admin.site.register(CensusInfo)
+# admin.site.register(CensusInfo)

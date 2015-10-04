@@ -1,12 +1,5 @@
 from django.db import models
-
-cities = [
-    {'name': 'Mumbai', 'population': '19,000,000', 'country': 'India'},
-    {'name': 'Calcutta', 'population': '15,000,000', 'country': 'India'},
-    {'name': 'New York', 'population': '20,000,000', 'country': 'USA'},
-    {'name': 'Chicago', 'population': '7,000,000', 'country': 'USA'},
-    {'name': 'Tokyo', 'population': '33,000,000', 'country': 'Japan'},
-]
+import json
 
 
 class APISetting(models.Model):
@@ -39,8 +32,8 @@ class CensusInfo(models.Model):
     api_view_id = models.CharField(max_length=2)
 
     def census_zip(self):
-        census_zip = self.census_info
-        return census_zip
+        census_zip = json.loads(self.census_info)
+        return census_zip['zip code tabulation area']
 
     def __str__(self):
         return self.census_info

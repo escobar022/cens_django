@@ -6,28 +6,75 @@
 
     {% load staticfiles %}
 
-    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
-    <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-
-    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="{% static 'census/style.css' %}"/>
+    <script src="{% static 'census/census.js' %}"></script>
 
 </head>
 <body>
-<h3>Available Views</h3>
-{% if all_census_views %}
-    <ul>
-        {% for apisetting in all_census_views %}
-            <li><a href="{% url 'census:detail' apisetting.id %}">{{ apisetting.api_description }}</a></li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>No polls are available.</p>
-{% endif %}
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/census/">US Cesus Data Views</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/census/">Census Directory</a></li>
+                <li><a href="/admin/">Admin Area</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="page_header top">
+                <h2>Welcome</h2>
+
+                <div class="page_body">
+                    <p>This is the Census API admin interface.</p>
+
+                    <p>Here you will see the population and housing in various parts of the country, to help develop
+                        stories, check facts, and analyze markets.</p>
+
+                    <p>To see a census view, please add it via the admin area.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="section-header top">
+                <div class="section-header-border">&nbsp;</div>
+                <div class="section-header-text">Available Views</div>
+            </div>
+            <div class="row">
+                {% if all_census_views %}
+                    {% for apisetting in all_census_views %}
+                        <div class="col-md-6">
+                            <a class="csview_link" href="{% url 'census:detail' apisetting.id %}">
+                                <div class="csview_card">
+                                    <h4>{{ apisetting.api_description }}</h4>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No census queries are available or have been imported.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

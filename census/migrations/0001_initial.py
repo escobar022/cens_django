@@ -33,7 +33,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('housing_variable', models.CharField(max_length=200)),
-                ('view_housing_variables', models.ForeignKey(to='census.APISetting')),
+                ('view_housing_variables', models.ForeignKey(to='census.models.APISetting')),
             ],
         ),
     ]
